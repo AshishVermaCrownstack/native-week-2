@@ -1,12 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+import Page4 from "./Pages/page4";
+
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+  return <Page4 />;
 }
 
 const styles = StyleSheet.create({
