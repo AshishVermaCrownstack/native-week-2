@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import {
   Alert,
   FlatList,
+  Keyboard,
   Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import AddTodo from "./components/AddTodo";
@@ -40,20 +41,22 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Header />
-      <View style={styles.content}>
-        <AddTodo addTodoItem={addTodoItem} />
-        <View style={styles.list}>
-          <FlatList
-            data={todos}
-            renderItem={({ item }) => (
-              <TodoList item={item} pressHandle={pressHandle} />
-            )}
-          />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <SafeAreaView style={styles.container}>
+        <Header />
+        <View style={styles.content}>
+          <AddTodo addTodoItem={addTodoItem} />
+          <View style={styles.list}>
+            <FlatList
+              data={todos}
+              renderItem={({ item }) => (
+                <TodoList item={item} pressHandle={pressHandle} />
+              )}
+            />
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -64,9 +67,11 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   content: {
+    flex: 1,
     padding: 30,
   },
   list: {
+    flex: 1,
     paddingTop: 20,
   },
 });
