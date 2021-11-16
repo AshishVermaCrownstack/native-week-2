@@ -4,15 +4,12 @@ import { Button, StyleSheet, TextInput, View } from "react-native";
 export default function AddTodo({ addTodoItem }) {
   const [text, setText] = useState();
 
-  const changeHandle = (val) => {
-    setText(val);
-  };
   return (
     <View>
       <TextInput
         style={Styles.input}
         placeholder="new todo ..."
-        onChangeText={(val) => changeHandle(val)}
+        onChangeText={(val) => setText(val)}
       />
       <Button
         title="Add Todo"

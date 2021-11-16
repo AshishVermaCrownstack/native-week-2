@@ -1,11 +1,10 @@
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   Alert,
   FlatList,
   Keyboard,
-  Platform,
   SafeAreaView,
-  StatusBar,
   StyleSheet,
   TouchableWithoutFeedback,
   View,
@@ -22,7 +21,7 @@ export default function App() {
     { text: "Check mails", key: 4 },
   ]);
 
-  const pressHandle = (key) => {
+  const deleteTodoItem = (key) => {
     setTodos((prevTodo) => {
       return prevTodo.filter((item) => item.key != key);
     });
@@ -50,11 +49,16 @@ export default function App() {
             <FlatList
               data={todos}
               renderItem={({ item }) => (
-                <TodoList item={item} pressHandle={pressHandle} />
+                <TodoList item={item} deleteTodoItem={deleteTodoItem} />
               )}
             />
           </View>
         </View>
+        <StatusBar
+          style="auto"
+          translucent={false}
+          backgroundColor="transparent"
+        />
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
@@ -64,7 +68,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   content: {
     flex: 1,

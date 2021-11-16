@@ -3,11 +3,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
 
-export default function TodoList(props) {
-  const { item, pressHandle } = props;
-
+export default function TodoList({ item, deleteTodoItem }) {
   return (
-    <TouchableOpacity onPress={() => pressHandle(item.key)}>
+    <TouchableOpacity onPress={() => deleteTodoItem(item.key)}>
       <View style={Styles.item}>
         <MaterialIcons name="delete-outline" color="#333" size={18} />
         <Text style={Styles.itemText}>{item.text}</Text>
